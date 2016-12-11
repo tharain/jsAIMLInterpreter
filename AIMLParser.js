@@ -20,8 +20,8 @@ var params = {};
 var domArr = [];
 var domTotal = 0;
 
-var prevWildValue = '';
-var wildArr = [];
+var prevRandomReply = '';
+var randomReplyArr = [];
 
 var prevAns = '';
 
@@ -34,7 +34,7 @@ var AIMLParser = function(parameters){
 	params = parameters;
 	
 	// 1st function: load all the AIML files
-	this.load = function(){
+	this.load = function(cb){
 		// .:: step 1: LOOP through all the files ::.
 		if(!isLoaded){
 			var currentDir = "./aiml";
@@ -70,38 +70,63 @@ var AIMLParser = function(parameters){
 										console.error("Error: File is NOT aiml.");
 										return;
 									}
-									
 									domArr[domTotal] = dom;
-									++domTotal
-									
+									++domTotal;	
+									console.log("read file: " + dirFile);
 								});
 								domjs.reset();
 							});
 						}
 					});
 				});
-				isLoaded = true;
-				console.log("AIML files loaded successfully.");
+				var loadWrapper = function(cb){
+					return function(){
+						if(domTotal == files.length){
+							isLoaded = true;
+							return cb();
+						}
+					};
+				};
+
+				if(domTotal != files.length){
+					setTimeout(loadWrapper(cb), 100);
+				}
 			});
 		}
 	};
 	
 	// 2nd function: return the phrase
-	this.reply = function(inputStr){
+	this.reply = function(inputStr,cb){
 		// .:: step 1: load the aiml file just in case if its not loaded. ::.
-		this.load();
+		var finalReply = this.load(replycb1);
+		
+		return finalReply;
 	}
 	
 	this.debug = function(){
-		this.load();
+		console.log("AIML files loaded successfully.");
 		console.log("<-- START OF DEBUG -->: " + domTotal);
 		for(var i=0; i<domTotal; ++i){
 			console.log(domArr[i]);
 			console.log();
 		}
 		console.log("<-- END OF DEBUG -->");
+	};
+}
+
+// Functions listed below are support functions.
+var replycb1 = function(inputStr){
+	clientInput = clientInput.toLowerCase();
+	randomReplyArr = [];
+	var reply = '';
+	// .:: step 1: text-parsing. remove all spaces from dom
+	for(var index=0; index<domArr.length; ++index){
+		removeSpaceFromDom(domArray[i].children);
 	}
-	
+}
+
+var removeSpaceFromDom(){
+	//do nothing
 }
 
 module.exports = AIMLParser;
