@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1" encoding="UTF-8"?>
+<category>
+	<pattern> HI </pattern>
+	<template>
+		Hello#Comma I'm Kirby. What's your <set name="topic"> name </set>?
+	</template>
+</category>
+
+<topic name="name">
+	<category>
+		<pattern> * </pattern>
+		<template>
+			Hi <set name="username"><star/></set>#Comma did I get your name right?
+		</template>
+	</category>
+	<category>
+		<pattern> YES </pattern>
+		<template>
+			Hi <get name="username"/>#Comma <set name="topic"> what do you do </set>?
+		</template>
+	</category>
+	<category>
+		<pattern> NO </pattern>
+		<template>
+			What's your <set name="topic">name</set> then?
+		</template>
+	</category>
+	<category>
+	<pattern> BYE </pattern>
+	<template>
+		Bye <get name="username"/>
+	</template>
+	</category>
+</topic>
+
+<topic name="what do you do">
+	<category>
+		<pattern> * </pattern>
+		<template>
+			Awesome! Can you help me out here? I need you to help me retrieve some money from the atm to return money to someone but I'm at quite an inaccessible place. I will pay you for your help.
+		</template>
+	</category>
+	
+	<category>
+		<pattern> NOT REALLY </pattern>
+		<template>
+			<random>
+				<li>Please? It's really urgent T.T</li>
+				<li>Why not? I'll pay you for your help.</li>
+				<li>If you are not willing to help, I gg le larh. T.T</li>
+				<li>No no#Comma it's not what you think.</li>
+				<li>I really know no one else to help me with this.</li>
+				<li>I know you are a kind hearted soul right?</li>
+				<li>I won't take no for an answer.</li>
+				<li>I'll pay you more.</li>
+				<li>Seriously? You wouldn't even help a friend in trouble?</li>
+				<li>I will always remember your help if you would help me this time.</li>
+			</random>
+		</template>
+	</category>
+	
+	<category>
+		<pattern> NO </pattern>
+		<template>
+			<srai>NOT REALLY</srai>
+		</template>
+	</category>
+	
+	<category>
+		<pattern> NO _ </pattern>
+		<template>
+			<srai>NOT REALLY</srai>
+		</template>
+	</category>
+	
+	<category>
+		<pattern> SURE </pattern>
+		<template>
+			<random>
+				<li>NO. This is wrong. You are one step towards in aiding a crime. Never help anyone to transfer money. Especially someone you've never met in person!</li>
+				<li>Congratulations#Comma you are scammed. What you are going to do is a possible breaking of law.</li>
+				<li>Have you thought that the person you met online is part of a syndicate. The profile of the person is ambiguous.</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern> OK </pattern>
+		<template>
+			<srai> SURE </srai>
+		</template>
+	</category>
+	
+	<category>
+		<pattern> OK _ </pattern>
+		<template>
+			<srai> SURE </srai>
+		</template>
+	</category>
+	
+	<category>
+		<pattern> SURE _ </pattern>
+		<template>
+			<srai> SURE </srai>
+		</template>
+	</category>
+	
+	<category>
+		<pattern> THEN WHAT </pattern>
+		<template>
+			<random>
+				<li>If I don't pay tomorrow I will get myself in a lawsuit. You will help won't you?</li>
+				<li>I'm stuck at camp. If I could I would have gone out and pay it myself.</li>
+				<li>After chatting you I realized you are someone I could trust.</li>
+				<li>It's definitely legal. I swear.</li>
+			</random>
+		</template>
+	</category>
+	
+	<category>
+		<pattern> THEN WHAT _ </pattern>
+		<template>
+			<srai> THEN WHAT </srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern> BYE </pattern>
+		<template>
+			Bye <get name="username"/>, hope you will consider about it.
+		</template>
+	</category>
+</topic>
+</aiml>
