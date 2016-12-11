@@ -48,7 +48,7 @@ var AIMLParser = function(parameters){
 				files.forEach(function(file,index){
 					var dirFile = path.join(currentDir,file);
 					
-					io.stat(currentDir, function(error, stat){
+					io.stat(dirFile, function(error, stat){
 						if(error){
 							console.error("Error: Failed to analyse file.");
 							return;
